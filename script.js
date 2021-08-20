@@ -34,15 +34,23 @@ function finalizar() {                                                      //MO
             }
 
             var media = (soma / optionsn.length)
-            error_label.innerHTML = 'Se quiser resetar, clique em finalizar mais uma vez.'
+            var reset = document.getElementById('reset');
+            reset.style.display = "block";
             res.innerHTML = `Total de números inseridos: <strong>${optionsn.length}</strong></br>
             Maior número: <strong>${max.toFixed(2).replace('.', ',')}</strong></br>
             Menor número: <strong>${min.toFixed(2).replace('.', ',')}</strong></br>
             Soma dos números: <strong>${soma.toFixed(2).replace('.', ',')}</strong></br>
             Média: <strong>${media.toFixed(2).replace('.', ',')}</strong></br>
             Mediano: <strong>${medianoFunction(optionsn.length).toFixed(2).replace('.', ',')}</strong>`
-        } else if (resetAll == 1) {     //RESETA TUDO
-            is = 1    
+        } 
+    } else if (options.length == 0) {
+        allBorders(2)
+        error_label.innerHTML = 'Insira um número antes de finalizar!'
+    }
+}
+
+function reset(){
+    is = 1    
             i = 0
             options = []
             optionsn = []
@@ -54,17 +62,14 @@ function finalizar() {                                                      //MO
             div2.removeChild(sel)
             opt = 0
             soma = 0
-            media
             res.innerHTML = ''
             error_label.innerHTML = ''
             resetAll = -1
             allBorders(0)
             num.value = ''
-        }
-    } else if (options.length == 0) {
-        allBorders(2)
-        error_label.innerHTML = 'Insira um número antes de finalizar!'
-    }
+            var reset = document.getElementById('reset');
+            reset.style.display = "none";
+            
 }
 
 function inserir() {                                            //BOTAO PARA ADICIONAR NUMERO, CHAMA A FUNCAO SCRIPITMAIN    
